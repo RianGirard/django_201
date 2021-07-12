@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+
+{% block title %}Archives:{% endblock %}
+
+{% block content %} 
+    <h1 class="text-xl text-indigo-500 m-2">{{ month|date:"F Y" }}</h1>    
+
+    <ul>
+        {% for post in object_list %} 
+            <a class="text-gray-900 text-lg" href="/{{ post.id }}"><li class="m-4">{{ post.author }}&emsp;on &ensp; {{ post.date }}</li></a>
+        {% endfor %} 
+    </ul>
+    
+    <p class="text-xl text-indigo-500 m-2">
+        {% if previous_month %}
+            Previous Month: &emsp; <a href="/archive/{{ previous_month.year }}/{{ previous_month.month }}" class="text-lg">{{ previous_month|date:"F Y" }}</a>
+        {% endif %}
+
+        {% if next_month %}
+        Next Month: &emsp;<a href="/archive/{{ next_month.year }}/{{ next_month.month }}" class="text-lg">{{ next_month|date:"F Y" }}</a>
+        {% endif %}
+    </p>
+
+
+{% endblock %} 
